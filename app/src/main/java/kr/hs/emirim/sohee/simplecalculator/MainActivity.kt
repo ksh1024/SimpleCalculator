@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     lateinit var edit1 : EditText;
@@ -13,10 +14,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var btnMinus : Button;
     lateinit var btnMultiply : Button;
     lateinit var btnDivide : Button;
+    lateinit var btnRemainder : Button;
     lateinit var num1 : String;
     lateinit var num2 : String;
     lateinit var textResult: TextView;
-    var result : Int? = null;
+    var result : Double? = null;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -26,29 +28,65 @@ class MainActivity : AppCompatActivity() {
         btnAdd=findViewById(R.id.btn_plus)
         btnMinus=findViewById(R.id.btn_minus)
         btnMultiply=findViewById(R.id.btn_multiply)
+        btnRemainder=findViewById(R.id.btn_remainder)
         btnDivide=findViewById(R.id.btn_divide)
+
         btnAdd.setOnClickListener{
             num1=edit1.text.toString()
             num2=edit2.text.toString()
-            result=Integer.parseInt(num1)+Integer.parseInt(num2)
+            if(num1==null || num2==""){
+                Toast.makeText(baseContext,"숫자를 입력하지 않고 버튼을 누르셨습니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            result=num1.toDouble()+num2.toDouble()
             textResult.text="계산 결과 : "+result
         }
         btnMinus.setOnClickListener{
             num1=edit1.text.toString()
             num2=edit2.text.toString()
-            result=Integer.parseInt(num1)-Integer.parseInt(num2)
+            if(num1==null || num2==""){
+                Toast.makeText(baseContext,"숫자를 입력하지 않고 버튼을 누르셨습니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            result=num1.toDouble()-num2.toDouble()
             textResult.text="계산 결과 : "+result
         }
         btnMultiply.setOnClickListener{
             num1=edit1.text.toString()
             num2=edit2.text.toString()
-            result=Integer.parseInt(num1)*Integer.parseInt(num2)
+            if(num1==null || num2==""){
+                Toast.makeText(baseContext,"숫자를 입력하지 않고 버튼을 누르셨습니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            result=num1.toDouble()*num2.toDouble()
             textResult.text="계산 결과 : "+result
         }
         btnDivide.setOnClickListener{
             num1=edit1.text.toString()
             num2=edit2.text.toString()
-            result=Integer.parseInt(num1)/Integer.parseInt(num2)
+            if(num1==null || num2==""){
+                Toast.makeText(baseContext,"숫자를 입력하지 않고 버튼을 누르셨습니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if(num2.toDouble()==0.0){
+                Toast.makeText(baseContext,"0으로 나눌 수 없습니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            result=num1.toDouble()/num2.toDouble()
+            textResult.text="계산 결과 : "+result
+        }
+        btnRemainder.setOnClickListener{
+            num1=edit1.text.toString()
+            num2=edit2.text.toString()
+            if(num1==null || num2==""){
+                Toast.makeText(baseContext,"숫자를 입력하지 않고 버튼을 누르셨습니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if(num2.toDouble()==0.0){
+                Toast.makeText(baseContext,"0으로 나눌 수 없습니다.",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            result=num1.toDouble()%num2.toDouble()
             textResult.text="계산 결과 : "+result
         }
     }
