@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     var btnListener = OnClickListener {
         num1 = edit1.text.toString()
         num2 = edit2.text.toString()
-        if (num1 == null || num2 == "") {
+        if (num1== null || num2 == "") {
             Toast.makeText(baseContext, "숫자를 입력하지 않고 버튼을 누르셨습니다.", Toast.LENGTH_SHORT).show()
             return@OnClickListener
         }
