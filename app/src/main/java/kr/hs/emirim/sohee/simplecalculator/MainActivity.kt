@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         btnMinus.setOnClickListener(btnListener)
         btnMultiply.setOnClickListener(btnListener)
         btnDivide.setOnClickListener(btnListener)
+        btnRemainder.setOnClickListener(btnListener)
     }
 
     var btnListener = OnClickListener {
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity() {
             R.id.btn_plus -> result = num1.toDouble() + num2.toDouble()
             R.id.btn_minus -> result = num1.toDouble() - num2.toDouble()
             R.id.btn_multiply -> result = num1.toDouble() * num2.toDouble()
+            R.id.btn_remainder -> result = num1.toDouble() % num2.toDouble()
             R.id.btn_divide ->{
                 if (num2.toDouble() == 0.0) {
                     Toast.makeText(baseContext, "0으로 나눌 수 없습니다.", Toast.LENGTH_SHORT).show()
@@ -57,6 +59,7 @@ class MainActivity : AppCompatActivity() {
             result = num1.toDouble() / num2.toDouble()
             }
         }
-        textResult.text="계산 결과: "+result
+        textResult.setText(R.string.text_result)
+        textResult.append(result.toString())
     }
 }
